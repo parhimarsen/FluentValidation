@@ -119,8 +119,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IExceptionLogger.cs" />
-    <Compile Include="Interfaces\IRequestLogger.cs" />
     <Compile Include="Mappers\DeviceModelToDomainMapper.cs" />
     <Compile Include="Mappers\DomainToDeviceModelMapper.cs" />
     <Compile Include="Mappers\DomainToUserModelMapper.cs" />
@@ -129,8 +127,6 @@
     <Compile Include="Models\QueryModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ExceptionLogger.cs" />
-    <Compile Include="Services\RequestLogger.cs" />
     <Compile Include="Validators\DeviceModelValidator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using FluentApi.Attributes;
 using FluentApi.Domain.Interfaces;
 using FluentApi.Mappers;
 using FluentApi.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
 
 namespace FluentApi.Controllers
 {
     [RoutePrefix("api/users")]
+    [CustomActionFilter, ExceptionFilter]
     public class UsersController : ApiController
     {
         private readonly IUsersService _usersService;

@@ -18,6 +18,7 @@ namespace FluentApi.InfrastructureServices.Services
         {
             _context.Database.EnsureCreated();
 
+
             _context.Users.RemoveRange(_context.Users);
             _context.Users.AddRange(_provider.GetUsers());
             _context.SaveChanges();

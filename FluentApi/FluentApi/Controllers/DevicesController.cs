@@ -10,6 +10,7 @@ using FluentApi.Models;
 namespace FluentApi.Controllers
 {
     [RoutePrefix("api/devices")]
+    [CustomActionFilter, ExceptionFilter]
     public class DevicesController : ApiController
     {
         private IDevicesService _devicesService;
@@ -31,6 +32,7 @@ namespace FluentApi.Controllers
             return _devicesService.SearchDevice(deviceId)?.ToModel();
         }
 
+        [ExceptionFilter]
         [HttpPost, Route("")]
         public void PostDevice([FromBody] DeviceModel device)
         {

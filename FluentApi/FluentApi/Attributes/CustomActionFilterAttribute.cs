@@ -1,26 +1,28 @@
-﻿using System.Web.Http.Controllers;
+﻿using FluentApi.Domain.Interfaces;
+using FluentApi.Mappers;
+using FluentApi.Models;
+using System.Net.Http;
+using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using FluentApi.Domain.Interfaces;
-using FluentApi.Interfaces;
 
 namespace FluentApi.Attributes
 {
     public class CustomActionFilterAttribute : System.Web.Http.Filters.ActionFilterAttribute
     {
-        private readonly IRequestLogger _requestLogger;
-
-        public CustomActionFilterAttribute(IRequestLogger requestLogger)
-        {
-            _requestLogger = requestLogger;
-        }
-
+        QueryModel model = new QueryModel();
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
+            model.ActionDescriptor = actionContext.Request.Method.ToString();
+            model.Url = actionContext.Request.RequestUri.ToString();
+            //Controller = actionContext.ControllerContext.ControllerDescription.ControllerName
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionContext)
         {
-            _requestLogger.Log(actionContext);
+            var logService =
+                (IQueriesService)actionContext.Request.GetDependencyScope().GetService(typeof(IQueriesService));
+            model.Result = actionContext.Response.Content.ToString();
+            logService.AddQuery(model.ToDomain());
         }
     }
 }

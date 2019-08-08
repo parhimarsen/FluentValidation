@@ -29,6 +29,7 @@ namespace FluentApi.InfrastructureServices.Repositories
         {
             device.Id = _context.Devices.Count() + 1;
             _context.Devices.Add(device);
+            _context.SaveChanges();
         }
 
         public void DeleteDevice(int deviceId)
@@ -37,6 +38,7 @@ namespace FluentApi.InfrastructureServices.Repositories
             if (device != null)
             {
                 _context.Remove(device);
+                _context.SaveChanges();
             }
         }
     }

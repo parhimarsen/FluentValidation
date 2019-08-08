@@ -16,8 +16,8 @@ namespace FluentApi.InfrastructureServices.Repositories
 
         public void AddQuery(InfrastructureQuery query)
         {
-            query.Id = _context.Queries.Count() + 1;
             _context.Queries.Add(query);
+            _context.SaveChanges();
         }
     }
 }
